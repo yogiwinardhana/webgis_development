@@ -1,0 +1,36 @@
+{
+  "name": "leaflet.measurecontrol",
+  "version": "1.2.0",
+  "description": "Leaflet control to mesure distances on the map.",
+  "main": "leaflet.measurecontrol.js",
+  "scripts": {
+    "build": "uglifyjs leaflet.measurecontrol.js --output leaflet.measurecontrol.min.js",
+    "lint": "eslint leaflet.measurecontrol.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makinacorpus/Leaflet.MeasureControl.git"
+  },
+  "keywords": [
+    "leaflet",
+    "measure"
+  ],
+  "author": "Makina Corpus (http://makina-corpus.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makinacorpus/Leaflet.MeasureControl/issues"
+  },
+  "homepage": "https://github.com/makinacorpus/Leaflet.MeasureControl#readme",
+  "devDependencies": {
+    "eslint": "~4.18.2",
+    "eslint-config-airbnb-base": "^5.0.3",
+    "uglify-js": "~3.3.13",
+    "eslint-config-makina": "~0.3.0",
+    "eslint-plugin-import": "~2.9.0"
+  },
+  "peerDependencies": {
+    "leaflet-draw": "^0.3.2",
+    "leaflet": "^0.7.3"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>WebGIS - NIB</title>
+        <link rel="icon" href="src\images/favicon.png">
+        <link rel="stylesheet" href='src/css/bootstrap.css'>
+        <link rel="stylesheet" href='src/leaflet.css'>
+        <link rel="stylesheet" href='plugin/Leaflet.Pancontrol-master/L.Control.Pan.css'>
+        <link rel="stylesheet" href='plugin/Leaflet.zoomslider-master/L.Control.Zoomslider.css'>
+        <link rel="stylesheet" href='plugin/Leaflet-MiniMap-master/Control.MiniMap.css'>
+        <link rel="stylesheet" href='plugin/Leaflet.MousePosition-master/L.Control.MousePosition.css'>
+        <link rel="stylesheet" href='plugin/Leaflet.EasyButton-master/easy-button.css'>
+        <link rel="stylesheet" href='plugin/leaflet-sidebar-master/L.Control.Sidebar.css'>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="plugin/Leaflet.awesome-markers-2.0-develop/leaflet.awesome-markers.css"" ">
+        <link rel="stylesheet" href="plugin/leaflet-marker-cluster/MarkerCluster.css">
+        <link rel="stylesheet" href="plugin/leaflet-marker-cluster/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="plugin/Leaflet.PolylineMeasure-master/Leaflet.PolylineMeasure.css">
+        <link rel="stylesheet" href="plugin/Leaflet.fullscreen-gh-pages/dist/leaflet.fullscreen.css">
+        
+        <script src='src/leaflet.js'></script>
+        <script src='src/jquery-3.2.0.js'></script>
+        <script src='plugin/Leaflet.Pancontrol-master/L.Control.Pan.js'></script>
+        <script src='plugin/Leaflet.zoomslider-master/L.Control.Zoomslider.js'></script>
+        <script src='plugin/Leaflet-MiniMap-master/Control.MiniMap.js'></script>
+        <script src='plugin/Leaflet.MousePosition-master/L.Control.MousePosition.js'></script>
+        <script src='plugin/Leaflet.EasyButton-master/easy-button.js'></script>
+        <script src='plugin/leaflet-sidebar-master/L.Control.Sidebar.js'></script>
+        <script src="plugin/leaflet-providers-master/leaflet-providers.js"></script>
+        <script src="plugin/Leaflet.awesome-markers-2.0-develop/leaflet.awesome-markers.js"></script>
+        <script src="plugin/leaflet-marker-cluster/leaflet.markercluster.js"></script>
+        <script src="plugin/Leaflet.PolylineMeasure-master/Leaflet.PolylineMeasure.js"></script>
+        <script src="plugin/Leaflet.fullscreen-gh-pages/dist/Leaflet.fullscreen.min.js"></script>
+
+        <!-- Link to the external JavaScript file -->
+        <script src="app.js"></script>
+
+        <style>
+            /* Banner style */
+            #banner {
+                height: 10vh;
+                background-color: #333;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+            }
+
+            /* Style for the links in the banner */
+            #banner a {
+                text-decoration: none;
+                color: white;
+                margin: 0 10px;
+            }
+
+            /* Position the links at the top right corner */
+            #banner a#home {
+                margin-right: auto;
+            }
+
+            /* Map and side panel styles (your existing styles) */
+            #mapdiv {
+                height: 90vh;
+                background-color: white;
+            }
+
+            #side-panel {
+                height: 85vh;
+                background-color: lightyellow;
+            }
+
+            /* Your existing styles */
+            #filterSubmit {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .col-xs-12, .col-xs-6, .col-xs-4 {
+                padding: 3px;
+            }
+
+            #divProject {
+                background-color: beige;
+                margin-bottom: 10px;
+            }
+
+            .errorMsg {
+                padding: 1px;
+                text-align: center;
+                background-color: red;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <!-- Div For Search By ID-->
+            <!-- Banner -->
+    <div id="banner">
+        <a href="http://localhost/webgis/index.php">Home</a>
+        <a href="http://localhost/webgis/about.php">About</a>
+    </div>
+
+        <div id="mapdiv" class="col-md-12"></div>
+        <div id="side-panel">
+            
+            <!-- Div For Price Range-->
+        <div id="divProject" class="text center col-xs-12">
+            <div id="divProjLabel" class="text-center col-xs-12">
+                <h4>Query Berdasarkan Nama PT</h4>
+            </div>
+            <div id="rangeSearchError" class="errorMsg col-xs-12"></div>
+            <div id="divFindProject" class="form-group">
+                <div class="col-xs-6">
+                    <select id="slctKondisi" class='form-control'></select>
+                </div>
+                <div class="col-xs-6">
+                    <button id="btnSearch" class="btn btn-primary btn-block">Result</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Div For Search By ID-->
+        <div id="divProject" class="text center col-xs-12">
+            <div id="divProjLabel" class="text-center col-xs-12">
+                <h4>Query Berdasarkan NIB</h4>
+            </div>
+            <div id="rangeSearchError" class="errorMsg col-xs-12"></div>
+            <div id="divFindProject" class="form-group">
+                <div class="col-xs-6">
+                    <select id="slctNIB" class='form-control'></select>
+                </div>
+                <div class="col-xs-6">
+                    <button id="btnSearch2" class="btn btn-primary btn-block">Result</button>
+                </div>
+            </div>
+        </div>
+        
+        <!--Side Panel Right-->
+        <div id='side-panel-right' class='col-md-3'>
+            <div id="resultTable-right"></div>
+        </div>
+        </div>
+    </body>
+</html>

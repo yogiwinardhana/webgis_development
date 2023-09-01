@@ -1,0 +1,25 @@
+{
+    "name":"leaflet.select-layers",
+    "version":"0.3.0",
+    "description":"a Leaflet plugin which adds new control to switch between different layers on the map. New control extends L.Control.ActiveLayers and replaces radio button panel with select tag.",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/vogdb/SelectLayersControl.git"
+    },
+    "author":"Sanin Aleksey aka vogdb",
+    "licenses":[
+        {
+            "type":"MIT",
+            "url": "https://github.com/vogdb/SelectLayersControl/blob/master/MIT-LICENSE.txt"
+        }
+    ],
+    "dependencies":{
+        "leaflet.active-layers": "~0.2",
+        "leaflet": "~0.7"
+    },
+    "devDependencies":{
+        "grunt-contrib-watch":"~0.3.1",
+        "grunt-contrib-uglify":"~0.2.0",
+        "grunt":"~0.4.1"
+    }
+}
