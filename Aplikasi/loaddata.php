@@ -9,7 +9,7 @@
         $sql = $db->prepare(
         "SELECT
         id,
-        nama,
+        pemilik,
         luas,
         nib,
         surat_ukur,
@@ -17,6 +17,10 @@
         kecamatan,
         kabupaten,
         provinsi,
+        join_foto_bt_01,
+        join_foto_bt_02,
+        join_foto_su_01,
+        join_foto_su_02,
         ST_AsGeoJSON(geom) as geom FROM hgu;"
         );
         $sql->execute();

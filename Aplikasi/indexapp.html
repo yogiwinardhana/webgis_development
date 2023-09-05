@@ -91,6 +91,27 @@
                 text-align: center;
                 background-color: red;
             }
+
+            /* Add styles for the image gallery */
+            #imageGallery {
+                margin-top: 20px; /* Adjust the margin as needed */
+                overflow: hidden; /* Hide overflowing content */
+                white-space: nowrap; /* Prevent images from stacking vertically */
+            }
+
+            #imageGallery img {
+                max-width: 100%; /* Ensure images fit within their container */
+                height: auto;
+                display: inline-block; /* Display images inline for sliding effect */
+                margin: 0 10px; /* Add spacing between images */
+                opacity: 0; /* Start with images hidden */
+                transition: transform 0.5s ease, opacity 0.5s ease; /* Add transition effects */
+            }
+
+            #imageGallery img.active {
+                opacity: 1; /* Display active image */
+                transform: translateX(0); /* Slide active image in from the left */
+            }
         </style>
 
     </head>
@@ -136,6 +157,9 @@
                     <button id="btnSearch2" class="btn btn-primary btn-block">Result</button>
                 </div>
             </div>
+             <div id="imageGallery" class="col-xs-12">
+            <!-- Images retrieved from the server will be added here -->
+        </div>
         </div>
         
         <!--Side Panel Right-->
@@ -145,3 +169,36 @@
         </div>
     </body>
 </html>
+
+<!-- JavaScript to add both images to the gallery and control sliding -->
+<script>
+$(document).ready(function () {
+    // URLs of the images to be displayed
+    var imageUrls = [
+        "https://geosai.my.id/su_01/1.jpg",
+        "https://geosai.my.id/su_01/2.jpg"
+    ];
+
+    // Create img elements and set their src attributes
+    for (var i = 0; i < imageUrls.length; i++) {
+        var imgElement = $("<img>").attr("src", imageUrls[i]);
+        $("#imageGallery").append(imgElement);
+    }
+
+    // Add 'active' class to the first image to make it visible
+    $("#imageGallery img:first-child").addClass("active");
+
+    // Set up a timer to slide images every 3 seconds
+    var currentIndex = 0;
+    setInterval(function () {
+        // Hide the current image
+        $("#imageGallery img.active").removeClass("active");
+
+        // Increment the index or loop back to the first image
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+
+        // Show the next image with the 'active' class
+        $("#imageGallery img:eq(" + currentIndex + ")").addClass("active");
+    }, 3000); // Change image every 3 seconds (adjust as needed)
+});
+</script>

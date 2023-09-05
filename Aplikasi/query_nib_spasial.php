@@ -11,7 +11,7 @@
         $sql = $db->prepare(
         "SELECT
         id,
-        nama,
+        pemilik,
         luas,
         nib,
         surat_ukur,

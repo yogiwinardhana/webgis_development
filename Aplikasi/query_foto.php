@@ -7,7 +7,7 @@ try {
     );
 
     // Prepare the SQL query to retrieve unique names
-    $sql = $db->prepare("SELECT pemilik FROM hgu");
+    $sql = $db->prepare("SELECT id, pemilik, join_foto_bt_01, join_foto_bt_02, join_foto_su_01, join_foto_su_02 FROM hgu");
 
     // Execute the query
     $sql->execute();
@@ -20,15 +20,10 @@ try {
         }
     }
 
-    // Get unique values using array_unique
-    $uniqueNames = array_unique($names);
-
-    // Convert the unique names array to an associative array with the same key and value
-    $result = array_combine($uniqueNames, $uniqueNames);
-
-    // Output the unique array as JSON
+    // Output all names as JSON
     header('Content-Type: application/json');
-    echo json_encode($result);
+    echo json_encode($names);
+
 } catch (PDOException $e) {
     // Handle database connection or query errors here
     echo 'Error: ' . $e->getMessage();

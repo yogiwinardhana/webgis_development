@@ -75,15 +75,21 @@
                                 };
                             },
                             onEachFeature: function(feature, layer) {
-                                var popupContent = "<h5>ID : " + feature.properties.id + "</h5>"+
-                                "<h5>Nama : " + feature.properties.nama + "</h5>"+
-                                "<h5>Luas : " + feature.properties.luas + "</h5>"+
-                                "<h5>NIB : " + feature.properties.nib + "</h5>"+
-                                "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>"+
-                                "<h5>Desa : " + feature.properties.desa + "</h5>"+
-                                "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>"+
-                                "<h5>Provinsi : " + feature.properties.provinsi + "</h5>"
-                                ;
+
+                              var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
+                                "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
+                                "<h5>Luas : " + feature.properties.luas + "</h5>" +
+                                "<h5>NIB : " + feature.properties.nib + "</h5>" +
+                                "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>" +
+                                "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
+                                "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
+                                "<h5>Images:</h5>" +
+                                "<img src='" + feature.properties.join_foto_bt_01 + "' width='100'><br>" +
+                                "<img src='image2.jpg' width='100'><br>" +
+                                "<img src='image3.jpg' width='100'><br>" +
+                                "<img src='image4.jpg' width='100'><br>";
+
                                 layer.bindPopup(popupContent);
 
                                 layer.on({
@@ -170,7 +176,6 @@
                         toggleDisplay: true}).addTo(mymap);
 
         //*********1.Query Load All Features Data
-
                 $.ajax({
                     url: 'loaddata.php',
                     type: 'POST',
@@ -189,15 +194,15 @@
                                 };
                             },
                             onEachFeature: function(feature, layer) {
-                                var popupContent = "<h5>ID : " + feature.properties.id + "</h5>"+
-                                "<h5>Nama : " + feature.properties.nama + "</h5>"+
-                                "<h5>Luas : " + feature.properties.luas + "</h5>"+
-                                "<h5>NIB : " + feature.properties.nib + "</h5>"+
-                                "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>"+
-                                "<h5>Desa : " + feature.properties.desa + "</h5>"+
-                                "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>"+
-                                "<h5>Provinsi : " + feature.properties.provinsi + "</h5>"
-                                ;
+                                var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
+                                                    "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
+                                                    "<h5>Luas : " + feature.properties.luas + "</h5>" +
+                                                    "<h5>NIB : " + feature.properties.nib + "</h5>" +
+                                                    "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>" +
+                                                    "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                                    "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
+                                                    "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
+                                                    "<h5>Images:" + feature.properties.join_foto_bt_01 +"</h5>";
                                 layer.bindPopup(popupContent);
 
                                 layer.on({
@@ -221,20 +226,6 @@
                     }
                 });
 
-            //********* Pop Up Data 1
-             function pop_data(feature, layer) {
-                var popupdata =
-                    "<p> <b>Nama Sungai : </b>"+ feature.properties.nama +"</br>" +
-                        "<b>Panjang Sungai : </b>"+ feature.properties.panjang +"</br>" +
-                        "<b>Pembagian DAS : </b>"+ feature.properties.das +"</br>" +
-                        "<b>Luas DAS (m2): </b>"+ feature.properties.luas +"</br>" +
-                        "<b>Nama Desa : </b>"+ feature.properties.desa +"</br>" +
-                        "<b>Nama Kecamatan : </b>"+ feature.properties.kecamatan +"</br>" +
-                        "<b>Nama Kabupaten : </b>"+ feature.properties.kabupate_2 +"</br>" +
-                    '</p>';
-                 layer.bindPopup(popupdata, {maxHeight: 400, maxWidth: 300});
-                } ;
-
 
 
              //*********2.Query Load All Features TABLES
@@ -247,7 +238,7 @@
                     }
                     });
 
-        //*********1.Query Data by Nama
+        //*********1.Query Data by Pemilik
         $("#btnSearch").click(function(){
             $.ajax({
                 url: 'query_nama_spasial.php',
@@ -257,7 +248,7 @@
                     if (queryLayer) {
                         mymap.removeLayer(queryLayer);
                     }
-                    console.log(response)
+//                    console.log(response)
                     queryLayer = L.geoJSON(JSON.parse(response), {
                         style: function(feature) {
                             return {
@@ -269,7 +260,7 @@
                         },
                         onEachFeature: function(feature, layer) {
                             var popupContent = "<h5>ID : " + feature.properties.id + "</h5>"+
-                            "<h5>Nama : " + feature.properties.nama + "</h5>"+
+                            "<h5>Nama : " + feature.properties.pemilik + "</h5>"+
                             "<h5>Luas : " + feature.properties.luas + "</h5>"+
                             "<h5>NIB : " + feature.properties.nib + "</h5>"+
                             "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>"+
@@ -311,7 +302,7 @@
                     if (queryLayer) {
                         mymap.removeLayer(queryLayer);
                     }
-                    console.log(response)
+//                    console.log(response)
 
                     queryLayer = L.geoJSON(JSON.parse(response), {
                         style: function(feature) {
@@ -324,7 +315,7 @@
                         },
                         onEachFeature: function(feature, layer) {
                             var popupContent = "<h5>ID : " + feature.properties.id + "</h5>"+
-                            "<h5>Nama : " + feature.properties.nama + "</h5>"+
+                            "<h5>Nama : " + feature.properties.pemilik + "</h5>"+
                             "<h5>Luas : " + feature.properties.luas + "</h5>"+
                             "<h5>NIB : " + feature.properties.nib + "</h5>"+
                             "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>"+
@@ -355,8 +346,25 @@
             });
         });
 
+        //*********3.Query Foto by Pemilik
+        $("#btnSearch").click(function(){
+            console.log('Button clicked for photo');
+            $.ajax({
+                url: 'query_foto.php',
+                type: 'POST',
+                dataType: 'json', // Assuming the response is in JSON format
+                success: function(response) {
+                    console.log('JSON response from server:', response);
+                    // Proceed with updating the imageGallery or any other logic
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error: ' + error);
+                }
+            });
+        });
 
-<!--            });-->
+
+
 <!--            -->
 <!--        $("#btnSearch").click(function(){-->
 <!--            $.ajax({-->
@@ -433,7 +441,7 @@
 
         // Attach event handler to the button to trigger AJAX when clicked
         $("#btnSearch").click(function() {
-            populateDropdown(); // Populate the dropdown again
+            populateDropdownNama(); // Populate the dropdown again
         });
 
 <!-- populateDropdownNIB() -->

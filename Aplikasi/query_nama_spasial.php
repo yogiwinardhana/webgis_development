@@ -11,7 +11,7 @@
         $sql = $db->prepare(
         "SELECT
         id,
-        nama,
+        pemilik,
         luas,
         nib,
         surat_ukur,
@@ -20,7 +20,7 @@
         kabupaten,
         provinsi,
         ST_AsGeoJSON(geom) as geom FROM hgu
-        WHERE nama = :slctKondisi"
+        WHERE pemilik = :slctKondisi"
         );
 
         $params = ["slctKondisi"=>$slctKondisi];
