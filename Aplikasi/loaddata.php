@@ -12,6 +12,7 @@
         pemilik,
         luas,
         nib,
+        join_foto_pembatalan,
         surat_ukur,
         desa,
         kecamatan,

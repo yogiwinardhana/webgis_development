@@ -9,7 +9,6 @@
         var queryLayer;
         var queryLayer1;
         var lyrSearch;
-        var lyrMarkerCluster;
         var ctrlPan;
         var ctrlZoomSlider;
         var ctrlScale;
@@ -61,8 +60,7 @@
                 data: {},
                 success: function(response) {
                     console.log("Easy button")
-
-                                            if (queryLayer) {
+                            if (queryLayer) {
                             mymap.removeLayer(queryLayer);
                         }
                         queryLayer = L.geoJSON(JSON.parse(response), {
@@ -75,20 +73,22 @@
                                 };
                             },
                             onEachFeature: function(feature, layer) {
-
-                              var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
-                                "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
-                                "<h5>Luas : " + feature.properties.luas + "</h5>" +
-                                "<h5>NIB : " + feature.properties.nib + "</h5>" +
-                                "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>" +
-                                "<h5>Desa : " + feature.properties.desa + "</h5>" +
-                                "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
-                                "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
-                                "<h5>Images:</h5>" +
-                                "<img src='" + feature.properties.join_foto_bt_01 + "' width='100'><br>" +
-                                "<img src='image2.jpg' width='100'><br>" +
-                                "<img src='image3.jpg' width='100'><br>" +
-                                "<img src='image4.jpg' width='100'><br>";
+                                   var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
+                                        "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
+                                        "<h5>Luas : " + feature.properties.luas + "</h5>" +
+                                        "<h5>NIB : " + feature.properties.nib + "</h5>" +
+                                        "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
+                                        "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
+                                        "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
+                                        "<h5>Gambar:</h5>" +
+                                        "<div style='display: flex; flex-direction: row; overflow-x: auto; max-width: 100%;'>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_01 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "</div>";
 
                                 layer.bindPopup(popupContent);
 
@@ -114,26 +114,6 @@
                 }
             });
 
-
-<!--        $.ajax({-->
-<!--            url: 'loaddata.php',-->
-<!--            type: 'POST',-->
-<!--            data: {},-->
-<!--            dataType: 'json', // Specify the expected data type-->
-<!--            success: function(response) {-->
-<!--                var parsedResponse = JSON.parse(response);-->
-<!--                if (parsedResponse && parsedResponse.features) {-->
-<!--                    queryLayer = L.geoJSON(parsedResponse).addTo(mymap);-->
-<!--                } else {-->
-<!--                    console.error("Invalid or missing GeoJSON data in the response.");-->
-<!--                }-->
-<!--            },-->
-<!--            error: function(xhr, status, error) {-->
-<!--                console.error("An error occurred: " + error);-->
-<!--            }-->
-<!--        });-->
-
-
        //*********2.Query Load All Features TABLES
             $.ajax({
                     url:'loadtable.php',
@@ -145,6 +125,16 @@
                     })
         }).addTo(mymap);
 
+        // Request WMS Geoserver
+        // Define the WMS URL and options
+       var raster = L.tileLayer.wms("https://geoserver.sekalatour.com/geoserver/geodatabase/wms", {
+              layers: "geodatabase:Peta_Kawasan_Hutan_Sumsel_6600",
+              format: 'image/png',
+              transparent: true,
+              attribution: "<a href=https://geosai.my.id>geosai.my.id</a>",
+              tiled: true
+            })
+
         //---------------Tile Layer Added to mymap
         lyrOpenStreetHot = L.tileLayer.provider('OpenStreetMap.HOT',{attribution:false}).addTo(mymap);
         lyrArcgis = L.tileLayer.provider('Esri.WorldImagery',{opacity:1,attribution:false});
@@ -154,10 +144,9 @@
             "ESRI World Imagery":lyrArcgis
         };
         overlayLayers={
-
+            "Kawasan Hutan": raster
         };
         ctrlLayers = L.control.layers(baseLayers,overlayLayers,{position:'topleft'}).addTo(mymap);
-
 
         //---------------Control Plugin
         ctrlZoomSlider = L.control.zoomslider({position:'topright'}).addTo(mymap);
@@ -194,15 +183,22 @@
                                 };
                             },
                             onEachFeature: function(feature, layer) {
-                                var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
-                                                    "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
-                                                    "<h5>Luas : " + feature.properties.luas + "</h5>" +
-                                                    "<h5>NIB : " + feature.properties.nib + "</h5>" +
-                                                    "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>" +
-                                                    "<h5>Desa : " + feature.properties.desa + "</h5>" +
-                                                    "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
-                                                    "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
-                                                    "<h5>Images:" + feature.properties.join_foto_bt_01 +"</h5>";
+                                    var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
+                                        "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
+                                        "<h5>Luas : " + feature.properties.luas + "</h5>" +
+                                        "<h5>NIB : " + feature.properties.nib + "</h5>" +
+                                        "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
+                                        "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
+                                        "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
+                                        "<h5>Gambar:</h5>" +
+                                        "<div style='display: flex; flex-direction: row; overflow-x: auto; max-width: 100%;'>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_01 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "</div>";
                                 layer.bindPopup(popupContent);
 
                                 layer.on({
@@ -259,14 +255,22 @@
                             };
                         },
                         onEachFeature: function(feature, layer) {
-                            var popupContent = "<h5>ID : " + feature.properties.id + "</h5>"+
-                            "<h5>Nama : " + feature.properties.pemilik + "</h5>"+
-                            "<h5>Luas : " + feature.properties.luas + "</h5>"+
-                            "<h5>NIB : " + feature.properties.nib + "</h5>"+
-                            "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>"+
-                            "<h5>Desa : " + feature.properties.desa + "</h5>"+
-                            "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>"+
-                            "<h5>Provinsi : " + feature.properties.provinsi + "</h5>";
+                                    var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
+                                        "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
+                                        "<h5>Luas : " + feature.properties.luas + "</h5>" +
+                                        "<h5>NIB : " + feature.properties.nib + "</h5>" +
+                                        "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
+                                        "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
+                                        "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
+                                        "<h5>Gambar:</h5>" +
+                                        "<div style='display: flex; flex-direction: row; overflow-x: auto; max-width: 100%;'>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_01 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "</div>";
                             layer.bindPopup(popupContent);
 
                             layer.on({
@@ -314,14 +318,23 @@
                             };
                         },
                         onEachFeature: function(feature, layer) {
-                            var popupContent = "<h5>ID : " + feature.properties.id + "</h5>"+
-                            "<h5>Nama : " + feature.properties.pemilik + "</h5>"+
-                            "<h5>Luas : " + feature.properties.luas + "</h5>"+
-                            "<h5>NIB : " + feature.properties.nib + "</h5>"+
-                            "<h5>Surat Ukur : " + feature.properties.surat_ukut + "</h5>"+
-                            "<h5>Desa : " + feature.properties.desa + "</h5>"+
-                            "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>"+
-                            "<h5>Provinsi : " + feature.properties.provinsi + "</h5>";
+                         var popupContent = "<h5>ID : " + feature.properties.id + "</h5>" +
+                                        "<h5>Nama : " + feature.properties.pemilik + "</h5>" +
+                                        "<h5>Luas : " + feature.properties.luas + "</h5>" +
+                                        "<h5>NIB : " + feature.properties.nib + "</h5>" +
+                                        "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
+                                        "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
+                                        "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
+                                        "<h5>Gambar:</h5>" +
+                                        "<div style='display: flex; flex-direction: row; overflow-x: auto; max-width: 100%;'>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_01 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
+                                        "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "</div>";
+
                             layer.bindPopup(popupContent);
 
                             layer.on({
@@ -345,70 +358,6 @@
                 }
             });
         });
-
-        //*********3.Query Foto by Pemilik
-        $("#btnSearch").click(function(){
-            console.log('Button clicked for photo');
-            $.ajax({
-                url: 'query_foto.php',
-                type: 'POST',
-                dataType: 'json', // Assuming the response is in JSON format
-                success: function(response) {
-                    console.log('JSON response from server:', response);
-                    // Proceed with updating the imageGallery or any other logic
-                },
-                error: function(xhr, status, error) {
-                    console.log('Error: ' + error);
-                }
-            });
-        });
-
-
-
-<!--            -->
-<!--        $("#btnSearch").click(function(){-->
-<!--            $.ajax({-->
-<!--                    url:'querytabel.php',-->
-<!--                    type:'POST',-->
-<!--                    data:{-->
-<!--                    slctKondisi1 : $('#slctKondisi').val(),-->
-<!--                    slctFungsi1 : $('#slctFungsi').val()    -->
-<!--                    },-->
-<!--                    success: function(response){-->
-<!--                        $('#resultTable-right').html(response);-->
-<!--                    } -->
-<!--                    });           -->
-<!--        })-->
-<!--            -->
-<!--            $("#btnSearchbuilding").click(function(){-->
-<!--            $.ajax({-->
-<!--                    url:'querytabel1.php',-->
-<!--                    type:'POST',-->
-<!--                    data:{-->
-<!--                    slctBangunan : $('#slctBangunan').val(),-->
-<!--                    slctAdmin : $('#slctAdmin').val()-->
-<!--                    },-->
-<!--                    success: function(response){-->
-<!--                        $('#resultTable-right').html(response);-->
-<!--                    } -->
-<!--                    });   -->
-<!--            })-->
-<!--            -->
-<!--            $("#btnsearchadmin").click(function(){-->
-<!--            $.ajax({-->
-<!--                    url:'querytabel2.php',-->
-<!--                    type:'POST',-->
-<!--                    data:{-->
-<!--                    slctKondisi1 : $('#slctKondisi1').val(),-->
-<!--                    slctFungsi1 : $('#slctFungsi1').val(),    -->
-<!--                    slctAdmin : $('#slctAdmin1').val()-->
-<!--                    },-->
-<!--                    success: function(response){-->
-<!--                        $('#resultTable-right').html(response);-->
-<!--                    } -->
-<!--                    });-->
-<!--            })-->
-
 
 <!--populateDropdownNama()-->
 

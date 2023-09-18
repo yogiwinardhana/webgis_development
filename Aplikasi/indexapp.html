@@ -14,8 +14,6 @@
         <link rel="stylesheet" href='plugin/leaflet-sidebar-master/L.Control.Sidebar.css'>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="plugin/Leaflet.awesome-markers-2.0-develop/leaflet.awesome-markers.css"" ">
-        <link rel="stylesheet" href="plugin/leaflet-marker-cluster/MarkerCluster.css">
-        <link rel="stylesheet" href="plugin/leaflet-marker-cluster/MarkerCluster.Default.css">
         <link rel="stylesheet" href="plugin/Leaflet.PolylineMeasure-master/Leaflet.PolylineMeasure.css">
         <link rel="stylesheet" href="plugin/Leaflet.fullscreen-gh-pages/dist/leaflet.fullscreen.css">
         
@@ -29,9 +27,9 @@
         <script src='plugin/leaflet-sidebar-master/L.Control.Sidebar.js'></script>
         <script src="plugin/leaflet-providers-master/leaflet-providers.js"></script>
         <script src="plugin/Leaflet.awesome-markers-2.0-develop/leaflet.awesome-markers.js"></script>
-        <script src="plugin/leaflet-marker-cluster/leaflet.markercluster.js"></script>
         <script src="plugin/Leaflet.PolylineMeasure-master/Leaflet.PolylineMeasure.js"></script>
         <script src="plugin/Leaflet.fullscreen-gh-pages/dist/Leaflet.fullscreen.min.js"></script>
+        <script src="plugin/leaflet-geoserver/L.Geoserver.js"></script>
 
         <!-- Link to the external JavaScript file -->
         <script src="app.js"></script>
@@ -91,42 +89,16 @@
                 text-align: center;
                 background-color: red;
             }
-
-            /* Add styles for the image gallery */
-            #imageGallery {
-                margin-top: 20px; /* Adjust the margin as needed */
-                overflow: hidden; /* Hide overflowing content */
-                white-space: nowrap; /* Prevent images from stacking vertically */
-            }
-
-            #imageGallery img {
-                max-width: 100%; /* Ensure images fit within their container */
-                height: auto;
-                display: inline-block; /* Display images inline for sliding effect */
-                margin: 0 10px; /* Add spacing between images */
-                opacity: 0; /* Start with images hidden */
-                transition: transform 0.5s ease, opacity 0.5s ease; /* Add transition effects */
-            }
-
-            #imageGallery img.active {
-                opacity: 1; /* Display active image */
-                transform: translateX(0); /* Slide active image in from the left */
-            }
         </style>
 
     </head>
     <body>
-
-        <!-- Div For Search By ID-->
-            <!-- Banner -->
-    <div id="banner">
-        <a href="http://localhost/webgis/index.php">Home</a>
-        <a href="http://localhost/webgis/about.php">About</a>
+   <div id="banner">
+        <a href="http://localhost/webgis/index.php">Beranda</a>
+        <a href="http://localhost/webgis/about.php">Tentang</a>
     </div>
-
-        <div id="mapdiv" class="col-md-12"></div>
+   <div id="mapdiv" class="col-md-12"></div>
         <div id="side-panel">
-            
             <!-- Div For Price Range-->
         <div id="divProject" class="text center col-xs-12">
             <div id="divProjLabel" class="text-center col-xs-12">
@@ -157,48 +129,12 @@
                     <button id="btnSearch2" class="btn btn-primary btn-block">Result</button>
                 </div>
             </div>
-             <div id="imageGallery" class="col-xs-12">
-            <!-- Images retrieved from the server will be added here -->
         </div>
         </div>
-        
+
         <!--Side Panel Right-->
         <div id='side-panel-right' class='col-md-3'>
             <div id="resultTable-right"></div>
         </div>
-        </div>
     </body>
 </html>
-
-<!-- JavaScript to add both images to the gallery and control sliding -->
-<script>
-$(document).ready(function () {
-    // URLs of the images to be displayed
-    var imageUrls = [
-        "https://geosai.my.id/su_01/1.jpg",
-        "https://geosai.my.id/su_01/2.jpg"
-    ];
-
-    // Create img elements and set their src attributes
-    for (var i = 0; i < imageUrls.length; i++) {
-        var imgElement = $("<img>").attr("src", imageUrls[i]);
-        $("#imageGallery").append(imgElement);
-    }
-
-    // Add 'active' class to the first image to make it visible
-    $("#imageGallery img:first-child").addClass("active");
-
-    // Set up a timer to slide images every 3 seconds
-    var currentIndex = 0;
-    setInterval(function () {
-        // Hide the current image
-        $("#imageGallery img.active").removeClass("active");
-
-        // Increment the index or loop back to the first image
-        currentIndex = (currentIndex + 1) % imageUrls.length;
-
-        // Show the next image with the 'active' class
-        $("#imageGallery img:eq(" + currentIndex + ")").addClass("active");
-    }, 3000); // Change image every 3 seconds (adjust as needed)
-});
-</script>

@@ -11,6 +11,7 @@
         pemilik,
         luas,
         nib,
+        join_foto_pembatalan,
         surat_ukur,
         desa,
         kecamatan,
@@ -27,6 +28,7 @@
         <td><b>Nama</b></td>
         <td><b>Luas</b></td>
         <td><b>NIB</b></td>
+        <td><b>Pembatalan SK</b></td>
         <td><b>Surat Ukur</b></td>
         <td><b>Desa</b></td>
         <td><b>Kecamatan</b></td>
