@@ -88,6 +88,7 @@
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
                                         "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_pembatalan2 + "' width='100'></div>" +
                                         "</div>";
 
                                 layer.bindPopup(popupContent);
@@ -127,8 +128,16 @@
 
         // Request WMS Geoserver
         // Define the WMS URL and options
-       var raster = L.tileLayer.wms("https://geoserver.sekalatour.com/geoserver/geodatabase/wms", {
-              layers: "geodatabase:Peta_Kawasan_Hutan_Sumsel_6600",
+       var kawasan_hutan = L.tileLayer.wms("https://geoserver.sekalatour.com/geoserver/geodatabase/wms", {
+              layers: "geodatabase:hgu_kawasan_hutan_sumsel",
+              format: 'image/png',
+              transparent: true,
+              attribution: "<a href=https://geosai.my.id>geosai.my.id</a>",
+              tiled: true
+            })
+
+       var batas_desa = L.tileLayer.wms("https://geoserver.sekalatour.com/geoserver/geodatabase/wms", {
+              layers: "geodatabase:hgu_batas_desa",
               format: 'image/png',
               transparent: true,
               attribution: "<a href=https://geosai.my.id>geosai.my.id</a>",
@@ -144,7 +153,8 @@
             "ESRI World Imagery":lyrArcgis
         };
         overlayLayers={
-            "Kawasan Hutan": raster
+            "Kawasan Hutan": kawasan_hutan,
+            "Batas Desa": batas_desa
         };
         ctrlLayers = L.control.layers(baseLayers,overlayLayers,{position:'topleft'}).addTo(mymap);
 
@@ -198,6 +208,7 @@
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
                                         "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_foto_pembatalan2 + "' width='100'></div>" +
                                         "</div>";
                                 layer.bindPopup(popupContent);
 
@@ -270,6 +281,7 @@
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
                                         "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_pembatalan2 + "' width='100'></div>" +
                                         "</div>";
                             layer.bindPopup(popupContent);
 
@@ -333,6 +345,7 @@
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_bt_02 + "' width='100'></div>" +
                                         "<div style='margin-right: 10px;'><img src='" + feature.properties.join_foto_su_01 + "' width='100'></div>" +
                                         "<div><img src='" + feature.properties.join_foto_su_02 + "' width='100'></div>" +
+                                        "<div><img src='" + feature.properties.join_foto_pembatalan2 + "' width='100'></div>" +
                                         "</div>";
 
                             layer.bindPopup(popupContent);
