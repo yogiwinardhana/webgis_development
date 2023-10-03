@@ -14,6 +14,7 @@
         nib,
         join_foto_pembatalan,
         surat_ukur,
+        no_hak,
         desa,
         kecamatan,
         kabupaten,

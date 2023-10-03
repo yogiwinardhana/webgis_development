@@ -146,18 +146,15 @@
             <div class="col-sm-6 col-lg-4">
                <div class="single_footer_part">
                   <h4>Tentang Kami </h4>
-                  <p>EFEKTIVITAS MONITORING HAK GUNA USAHA (HGU) MELALUI
-                            PEMANFAATAAN ARCGIS (GEOGRAFIC INFORMATION SYSTEM)
-                            PADA SATUAN KERJA KANTOR PERTANAHAN KABUPATEN MUSI
-                            BANYUASIN SUMATERA SELATAN TAHUN 2023.</p>
+                  <p>Efektivitas Monitoring Hak Guna Usaha (HGU) Melalui Pemanfaatan ArcGIS (Geographic Information System) Pada Satuan Kerja Kantor Pertanahan Kabupaten Musi Banyuasin, Sumatera Selatan Tahun 2023</p>
                </div>
             </div>
             <div class="col-sm-6 col-lg-4">
                <div class="single_footer_part">
                   <h4>Kontak Info</h4>
-                  <p>Nama: Eggy Girniawan, S.T.,M.M, </p>
-                  <p>Angkatan: PKP IV 2013 </p>
-                  <p>Alamat: Kantah Kab. Musi Banyuasin Prov. Sumatera Selatan, Indonesia.</p>
+                  <p>Nama: Eggy Girniawan, S.T.,M.M. </p>
+                  <p>Angkatan: Pelatihan Kepemimpinan Pengawas Angkatan IV Tahun 2023</p>
+                  <p>Alamat: Kantah Kab. Musi Banyuasin Prov. Sumatera Selatan, Indonesia</p>
                   <p>Nomor Handphone: +62-8137-3050-533</p>
                   <p>Email: eggy.girniawan@atrbpn.go.id</p>
                </div>

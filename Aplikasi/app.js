@@ -79,7 +79,9 @@
                                         "<h5>NIB : " + feature.properties.nib + "</h5>" +
                                         "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
                                         "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Nomor Hak : " + feature.properties.no_hak + "</h5>" +
                                         "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kecamatan : " + feature.properties.kecamatan + "</h5>" +
                                         "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
                                         "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
                                         "<h5>Gambar:</h5>" +
@@ -198,8 +200,10 @@
                                         "<h5>Luas : " + feature.properties.luas + "</h5>" +
                                         "<h5>NIB : " + feature.properties.nib + "</h5>" +
                                         "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
+                                        "<h5>Nomor Hak : " + feature.properties.no_hak + "</h5>" +
                                         "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
                                         "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kecamatan : " + feature.properties.kecamatan + "</h5>" +
                                         "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
                                         "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
                                         "<h5>Gambar:</h5>" +
@@ -272,7 +276,9 @@
                                         "<h5>NIB : " + feature.properties.nib + "</h5>" +
                                         "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
                                         "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Nomor Hak : " + feature.properties.no_hak + "</h5>" +
                                         "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kecamatan : " + feature.properties.kecamatan + "</h5>" +
                                         "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
                                         "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
                                         "<h5>Gambar:</h5>" +
@@ -336,7 +342,9 @@
                                         "<h5>NIB : " + feature.properties.nib + "</h5>" +
                                         "<h5>Pembatalan SK : " + feature.properties.join_foto_pembatalan + "</h5>" +
                                         "<h5>Surat Ukur : " + feature.properties.surat_ukur + "</h5>" +
+                                        "<h5>Nomor Hak : " + feature.properties.no_hak + "</h5>" +
                                         "<h5>Desa : " + feature.properties.desa + "</h5>" +
+                                        "<h5>Kecamatan : " + feature.properties.kecamatan + "</h5>" +
                                         "<h5>Kabupaten : " + feature.properties.kabupaten + "</h5>" +
                                         "<h5>Provinsi : " + feature.properties.provinsi + "</h5>" +
                                         "<h5>Gambar:</h5>" +
